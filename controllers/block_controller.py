@@ -1,6 +1,8 @@
 from flask import request, jsonify
 from flask_restful import Resource, marshal, fields
 from models.block import Block as BlockDB
+from models.property import Property
+from controllers.property_controller import properties_fields
 from authentication.token_annotation import token_required
 from database.sqlalchemy import db
 
@@ -8,6 +10,12 @@ block_fields = {
     "id": fields.Integer,
     "block_name": fields.String
 }
+
+
+class BlockProperties(Resource):
+    @token_required
+    def get(self, idBlock):
+        return marshal(Property.query.filter_by(block=idBlock).all(), properties_fields), 200
 
 
 class Block(Resource):
