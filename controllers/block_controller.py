@@ -32,12 +32,12 @@ class BlockList(Resource):
     @token_required
     def post(self):
         json = request.get_json()
-        blockFound = BlockDB.query.filter_by(id=json["id"]).first()
+        blockFound = BlockDB.query.filter_by(id=json.get("id")).first()
         if blockFound is not None:
-            return jsonify(message="Id {0} already exists".format(json["id"]))
+            return jsonify(message="Id {0} already exists".format(json.get("id")))
         newBlock = BlockDB()
-        newBlock.id = json["id"],
-        newBlock.block_name = json["block_name"]
+        newBlock.id = json.get("id"),
+        newBlock.block_name = json.get("block_name")
 
         db.session.add(newBlock)
         db.session.commit()

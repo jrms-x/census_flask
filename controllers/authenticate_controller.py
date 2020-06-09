@@ -9,9 +9,9 @@ from constants import SECRET_KEY
 class Authentication(Resource):
     def post(self):
         json = request.get_json()
-        user = User.query.filter_by(username=json["user"]).first()
+        user = User.query.filter_by(username=json.get("user")).first()
 
-        if( user != None and user.hash == hashlib.sha512((json["password"] + user.salt).encode('utf-8')).hexdigest()):
+        if( user != None and user.hash == hashlib.sha512((json.get("password") + user.salt).encode('utf-8')).hexdigest()):
             
             token = jwt.encode({
                 'exp' : datetime.datetime.utcnow() + datetime.timedelta(days=1),
