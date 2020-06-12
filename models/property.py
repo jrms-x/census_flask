@@ -22,3 +22,5 @@ class Property(db.Model):
     location = db.Column(db.String(256))
     serial_number = db.Column(db.String(64))
     type_service = db.Column(db.Integer)
+
+    census_data = db.relationship("CensusData", uselist=False, back_populates="property" )

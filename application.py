@@ -1,5 +1,5 @@
-from flask import Flask, g, request, redirect, url_for
-from flask_restful import Resource, Api
+from flask import Flask
+from flask_restful import Api
 from controllers.authenticate_controller import Authentication
 from controllers.register_controller import Register
 from controllers.property_controller import Property, PropertyList
@@ -8,6 +8,8 @@ from database.sqlalchemy import db
 from authentication.token_annotation import token_required
 from constants import DATABASE_URL
 from controllers.catalog_controller import CatalogList
+from controllers.census_data_controller import CensusData
+from controllers.pictures_controller import PictureList, Picture
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
@@ -34,9 +36,12 @@ ws.add_resource(Register, "/register")
 ws.add_resource(PropertyList, "/properties/")
 ws.add_resource(Property, "/properties/<int:idProperty>")
 ws.add_resource(Block, "/blocks/<int:idBlock>")
+ws.add_resource(PictureList, "/properties/<int:idProperty>/pictures")
+ws.add_resource(Picture, "/pictures")
 ws.add_resource(BlockList, "/blocks/")
 ws.add_resource(BlockProperties, "/blocks/<int:idBlock>/properties")
 ws.add_resource(CatalogList, "/catalogs/")
+ws.add_resource(CensusData, "/censusData")
 
 if __name__ == '__main__':
     app.run(debug=True)

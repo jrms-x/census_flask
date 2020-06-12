@@ -4,6 +4,19 @@ from authentication.token_annotation import token_required
 from models.property import Property as PropertyDB
 from database.sqlalchemy import db
 
+census_data_field = {
+    "id" : fields.Integer,
+    "id_anomaly" : fields.Integer,
+    "id_meter_status" : fields.Integer,
+    "id_meter_brands" : fields.Integer,
+    "id_type_charges" : fields.Integer,
+    "id_type_properties" : fields.Integer,
+    "id_type_protections" : fields.Integer,
+    "id_type_outlet" : fields.Integer,
+    "id_property" : fields.Integer,
+
+}
+
 properties_fields = {
     "id": fields.Integer,
     "block": fields.Integer,
@@ -22,7 +35,8 @@ properties_fields = {
     "customer_rating": fields.String,
     "location": fields.String,
     "serial_number": fields.String,
-    "type_service": fields.Integer
+    "type_service": fields.Integer,
+    "census_data" : fields.Nested(census_data_field, allow_null=True)
 }
 
 

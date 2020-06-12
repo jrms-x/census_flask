@@ -15,7 +15,8 @@ block_fields = {
 class BlockProperties(Resource):
     @token_required
     def get(self, idBlock):
-        return marshal(Property.query.filter_by(block=idBlock).all(), properties_fields), 200
+        properties = Property.query.filter_by(block=idBlock).all()
+        return marshal(properties, properties_fields), 200
 
 
 class Block(Resource):
