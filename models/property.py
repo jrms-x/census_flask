@@ -23,6 +23,6 @@ class Property(db.Model):
     serial_number = db.Column(db.String(64))
     type_service = db.Column(db.Integer)
     latitude = db.Column(db.Float, nullable=True)
-    longitud = db.Column(db.Float, nullable=True)
+    longitude = db.Column(db.Float, nullable=True)
 
     census_data = db.relationship("CensusData", uselist=False, back_populates="property" )

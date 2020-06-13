@@ -37,7 +37,7 @@ properties_fields = {
     "serial_number": fields.String,
     "type_service": fields.Integer,
     "latitude" : fields.Float,
-    "longitud" : fields.Float,
+    "longitude" : fields.Float,
     "census_data" : fields.Nested(census_data_field, allow_null=True)
 }
 
