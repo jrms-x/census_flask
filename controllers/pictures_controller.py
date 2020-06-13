@@ -37,7 +37,7 @@ class Picture(Resource):
         db.session.add(picture)
         db.session.commit()
 
-        return {"message" : "Picture saved"}, 200
+        return {"message" : "Picture saved", "info" : picture.id}, 200
 
     @token_required
     def delete(self):
