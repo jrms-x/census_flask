@@ -51,7 +51,7 @@ class Picture(Resource):
         db.session.commit()
         return {"message" : "Pictures deleted: {0}".format(deleted)}, 200
     
-
+    @token_required
     def get(self):
         id = request.args.get("id")
         bytes = DriveHelper().download_file(id)
