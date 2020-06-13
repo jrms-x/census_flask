@@ -47,9 +47,9 @@ class Picture(Resource):
             return {"message" : "Must send picture Id"}, 400
         toDelete = PictureDB.query.filter_by(id=id).first()
         DriveHelper().delete_file(toDelete.blob_identifier)
-        deleted = db.session.delete(toDelete)
+        db.session.delete(toDelete)
         db.session.commit()
-        return {"message" : "Pictures deleted: {0}".format(deleted)}, 200
+        return {"message" : "Picture deleted:"}, 200
     
     @token_required
     def get(self):
