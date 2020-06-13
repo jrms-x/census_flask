@@ -7,6 +7,6 @@ class Picture(db.Model):
     title = db.Column(db.String(64), nullable=False)
     subtitle = db.Column(db.String(64))
     description = db.Column(db.String(128))
-    location = db.Column(db.Text, nullable=False)
+    blob_identifier = db.Column(db.Text, nullable=False)
     order = db.Column(db.Integer, nullable=False)
     id_property = db.Column(db.Integer, ForeignKey("properties.id") ,nullable=False)

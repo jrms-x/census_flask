@@ -13,7 +13,7 @@ census_data_field = {
     "id_type_properties" : fields.Integer,
     "id_type_protections" : fields.Integer,
     "id_type_outlet" : fields.Integer,
-    "id_property" : fields.Integer,
+    "id_property" : fields.Integer
 
 }
 
@@ -36,6 +36,8 @@ properties_fields = {
     "location": fields.String,
     "serial_number": fields.String,
     "type_service": fields.Integer,
+    "latitude" : fields.Float,
+    "longitud" : fields.Float,
     "census_data" : fields.Nested(census_data_field, allow_null=True)
 }
 
