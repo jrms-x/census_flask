@@ -10,3 +10,4 @@ class Picture(db.Model):
     blob_identifier = db.Column(db.Text, nullable=False)
     order = db.Column(db.Integer, nullable=False)
     id_property = db.Column(db.Integer, ForeignKey("properties.id") ,nullable=False)
+    year = db.Column(db.Integer, nullable=False)

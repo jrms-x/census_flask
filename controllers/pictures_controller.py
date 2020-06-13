@@ -15,7 +15,8 @@ pictures_fileds = {
     "description" : fields.String,
     "blob_identifier" : fields.String,
     "order" : fields.Integer,
-    "id_property" : fields.Integer
+    "id_property" : fields.Integer,
+    "year" : fields.Integer
 }
 
 
