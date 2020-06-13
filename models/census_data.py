@@ -13,6 +13,7 @@ class CensusData(db.Model):
     id_type_properties = db.Column(db.Integer, ForeignKey("catalogs.id"))
     id_type_protections = db.Column(db.Integer, ForeignKey("catalogs.id"))
     id_type_outlet = db.Column(db.Integer, ForeignKey("catalogs.id"))
+    year = db.Column(db.Integer)
 
     id_property = db.Column(db.Integer, ForeignKey("properties.id"))
 

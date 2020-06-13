@@ -7,7 +7,7 @@ class CensusData(Resource):
     @token_required
     def post(self):
         json = request.get_json()
-        foundCensus = CensusDataDb.query.filter_by(id_anomaly=json.get("anomalyID")).first()
+        foundCensus = CensusDataDb.query.filter_by(id_property=json.get("id_property")).first()
         if foundCensus is not None:
             return {"message" : "Census data already exists"}, 400
         census = self.__get_census_data_json(json)
@@ -19,14 +19,14 @@ class CensusData(Resource):
     
     def __get_census_data_json(self, json):
         census = CensusDataDb()
-        census.id = json.get("id")
-        census.id_anomaly = json.get("anomalyID")
-        census.id_meter_brands = json.get("meterBrandsID")
-        census.id_meter_status = json.get("meterStatusID")
-        census.id_property = json.get("propertyID")
-        census.id_type_charges = json.get("typeChargesID")
-        census.id_type_properties = json.get("typePropertiesID")
-        census.id_type_protections = json.get("typeProtectionsID")
-        census.id_type_outlet = json.get("typeOutletID")
+        census.id_anomaly = json.get("id_anomaly")
+        census.id_meter_brands = json.get("id_meter_brands")
+        census.id_meter_status = json.get("id_meter_status")
+        census.id_property = json.get("id_property")
+        census.id_type_charges = json.get("id_type_charges")
+        census.id_type_properties = json.get("id_type_properties")
+        census.id_type_protections = json.get("id_type_protections")
+        census.id_type_outlet = json.get("id_type_outlet")
+        census.year = json.get("year")
         
         return census
