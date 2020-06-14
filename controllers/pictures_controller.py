@@ -34,11 +34,11 @@ class Picture(Resource):
         picture.description = request.form.get("description")
         picture.blob_identifier = DriveHelper().upload_file(args.get("image").stream, args.get("image").content_type, args.get("image").filename)
         picture.order = request.form.get("order")
-
+        picture.year = request.form.get("year")
         db.session.add(picture)
         db.session.commit()
 
-        return {"message" : "Picture saved", "info" : picture.id}, 200
+        return {"message" : "Picture saved", "data" : picture.id}, 200
 
     @token_required
     def delete(self):
@@ -64,9 +64,9 @@ class Picture(Resource):
 
 class PictureList(Resource):
     @token_required
-    def get(self, idProperty):
+    def get(self, idProperty, year):
         return marshal(PictureDB.query.
-        filter_by(id_property=idProperty).all(), pictures_fileds), 200
+        filter_by(id_property=idProperty, year=year).all(), pictures_fileds), 200
 
     
 

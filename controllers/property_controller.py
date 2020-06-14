@@ -51,6 +51,9 @@ class Property(Resource):
         else:
             return marshal(propertyFound, properties_fields), 200
 
+    
+
+
 
 class PropertyList(Resource):
     @token_required
@@ -83,3 +86,13 @@ class PropertyList(Resource):
         db.session.commit()
 
         return jsonify(message="Property saved")
+
+        
+    @token_required
+    def put(self):
+         json = request.get_json()
+         property = PropertyDB.query.filter_by(id=json.get("id")).first()
+         property.latitude = json.get("latitude")
+         property.longitude = json.get("longitude")
+         db.session.commit()
+         return {"message" : "Saved property data"}, 200

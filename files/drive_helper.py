@@ -1,7 +1,7 @@
 import os
 import io
 from googleapiclient.discovery import build
-from googleapiclient.http import MediaIoBaseUpload, MediaIoBaseDownload
+from googleapiclient.http import MediaIoBaseUpload
 
 class DriveHelper:
 
@@ -22,9 +22,4 @@ class DriveHelper:
 
     def download_file(self, id):
         return self.service.files().get_media(fileId=id).execute()
-        '''stream = io.BytesIO()
-        media_download = MediaIoBaseDownload(stream, file_from_drive)
-        finished = False
-        while finished is not True:
-            _, finished = media_download.next_chunk()
-        return stream'''
+
