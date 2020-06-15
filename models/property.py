@@ -22,7 +22,7 @@ class Property(db.Model):
     location = db.Column(db.String(256))
     serial_number = db.Column(db.String(64))
     type_service = db.Column(db.Integer)
-    latitude = db.Column(db.Float, nullable=True)
-    longitude = db.Column(db.Float, nullable=True)
+    latitude = db.Column(db.Float(precision='53'), nullable=True)
+    longitude = db.Column(db.Float(precision='53'), nullable=True)
 
     census_data = db.relationship("CensusData", uselist=False, back_populates="property" )
