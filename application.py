@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_restful import Api
+from flask_cors import CORS
 from controllers.authenticate_controller import Authentication
 from controllers.register_controller import Register
 from controllers.property_controller import Property, PropertyList
@@ -15,6 +16,8 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 
 db.init_app(app)
+
+CORS(app)
 
 with app.app_context():
     db.create_all()
